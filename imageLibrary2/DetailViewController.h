@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LVImageAndDescription.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <UIScrollViewDelegate>
 
-@property (strong, nonatomic) id detailItem;
+- (void) showImageNumber:(NSInteger)imageNumber;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (retain, nonatomic) NSMutableArray *thumbnailArray; //test
+@property (retain, nonatomic) NSArray *imageNames;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

@@ -11,20 +11,72 @@
 #import "DetailViewController.h"
 
 @implementation MasterViewController
+{
+    NSArray *_imageNameArray;
+    __block NSMutableArray *_thumbnailArray;
+}
+
+NSInteger const NAVIGATION_BAR_HEIGHT = 44; // ?!
 
 @synthesize detailViewController = _detailViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+    // ?!
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSString* imageFolderPath = [[NSBundle mainBundle] resourcePath];
+    imageFolderPath = [imageFolderPath stringByAppendingString:@"/Images"];
+    _imageNameArray = [[fileManager contentsOfDirectoryAtPath:imageFolderPath error:nil] retain];
+    
+    _thumbnailArray = [[NSMutableArray alloc] initWithCapacity:_imageNameArray.count];
+    
+    UIImage *noImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"noImage.jpg"
+                                                                                      ofType:nil
+                                                                                 inDirectory:@"auxiliaryImages"]];
+    for (NSInteger i=0; i<_imageNameArray.count; i++) {
+        [_thumbnailArray addObject:noImage];
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[_imageNameArray objectAtIndex:i]
+                                                                                              ofType:nil
+                                                                                         inDirectory:@"Images"]];
+        //        CGSize destinationSize = CGSizeMake(image.size.width/10, image.size.height/10);
+            CGSize destinationSize = CGSizeMake(32, 48);
+            UIGraphicsBeginImageContext(destinationSize);
+
+            [image drawInRect:CGRectMake(0, 0, destinationSize.width, destinationSize.height)];
+            UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+            [_thumbnailArray replaceObjectAtIndex:i withObject: thumbnail];
+            UIGraphicsEndImageContext();
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+//                NSInteger index = i;
+//                NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:index];
+//                [self update:indexPath];
+//                NSIndexPath *indexPath = [[[NSIndexPath alloc] initWithIndex:index] autorelease];
+//                NSArray *array = [NSArray arrayWithObject:indexPath];
+//                [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationRight];
+//                UITableView *tableView = self.tableView;
+//                NSIndexPath *rowPath = [NSIndexPath alloc] 
+//                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:] withRowAnimation:UITableViewRowAnimationRight];
+            });
+        });
+    }
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Master", @"Master");
     }
+    
     return self;
 }
-							
+
 - (void)dealloc
 {
+    [_imageNameArray release], _imageNameArray = nil;
+    [_thumbnailArray release], _thumbnailArray = nil;
     [_detailViewController release];
     [super dealloc];
 }
@@ -84,7 +136,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return _imageNameArray.count;
 }
 
 // Customize the appearance of table view cells.
@@ -99,7 +151,9 @@
     }
 
     // Configure the cell.
-    cell.textLabel.text = NSLocalizedString(@"Detail", @"Detail");
+    cell.textLabel.text = [_imageNameArray objectAtIndex:indexPath.row];
+    cell.imageView.image = [_thumbnailArray objectAtIndex:indexPath.row];
+       
     return cell;
 }
 
@@ -145,7 +199,15 @@
 {
     if (!self.detailViewController) {
         self.detailViewController = [[[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil] autorelease];
+        
+        [self.detailViewController.view setNeedsDisplay];
+        self.detailViewController.imageNames = _imageNameArray;
+        self.detailViewController.thumbnailArray = _thumbnailArray; //test
+        self.detailViewController.scrollView.contentSize = CGSizeMake(self.detailViewController.scrollView.frame.size.width * _imageNameArray.count, self.detailViewController.scrollView.bounds.size.height - NAVIGATION_BAR_HEIGHT);
     }
+    
+    [self.detailViewController showImageNumber:indexPath.row];
+    
     [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
