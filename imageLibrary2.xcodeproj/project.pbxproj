@@ -17,6 +17,10 @@
 		843E4CB714A331DF00B74789 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E4CB614A331DF00B74789 /* DetailViewController.m */; };
 		843E4CBA14A331DF00B74789 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843E4CB814A331DF00B74789 /* MasterViewController.xib */; };
 		843E4CBD14A331DF00B74789 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843E4CBB14A331DF00B74789 /* DetailViewController.xib */; };
+		843E4CC714A3335800B74789 /* LVImageAndDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E4CC614A3335800B74789 /* LVImageAndDescription.m */; };
+		843E4CCD14A334C400B74789 /* ImageAndDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843E4CCB14A334C400B74789 /* ImageAndDescription.xib */; };
+		845083EF14D5BC0E00C8D79C /* auxiliaryImages in Resources */ = {isa = PBXBuildFile; fileRef = 845083ED14D5BC0E00C8D79C /* auxiliaryImages */; };
+		845083F014D5BC0E00C8D79C /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 845083EE14D5BC0E00C8D79C /* Images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,18 +28,23 @@
 		843E4CA014A331DF00B74789 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		843E4CA214A331DF00B74789 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		843E4CA414A331DF00B74789 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		843E4CA814A331DF00B74789 /* imageLibrary2-Info.plist */ = {isa = PBXFileReference; path = "imageLibrary2-Info.plist"; sourceTree = "<group>"; };
+		843E4CA814A331DF00B74789 /* imageLibrary2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "imageLibrary2-Info.plist"; sourceTree = "<group>"; };
 		843E4CAA14A331DF00B74789 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		843E4CAC14A331DF00B74789 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		843E4CAE14A331DF00B74789 /* imageLibrary2-Prefix.pch */ = {isa = PBXFileReference; path = "imageLibrary2-Prefix.pch"; sourceTree = "<group>"; };
-		843E4CAF14A331DF00B74789 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		843E4CAE14A331DF00B74789 /* imageLibrary2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "imageLibrary2-Prefix.pch"; sourceTree = "<group>"; };
+		843E4CAF14A331DF00B74789 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		843E4CB014A331DF00B74789 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		843E4CB214A331DF00B74789 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		843E4CB214A331DF00B74789 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		843E4CB314A331DF00B74789 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		843E4CB514A331DF00B74789 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		843E4CB514A331DF00B74789 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		843E4CB614A331DF00B74789 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		843E4CB914A331DF00B74789 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
 		843E4CBC14A331DF00B74789 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
+		843E4CC514A3335800B74789 /* LVImageAndDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LVImageAndDescription.h; sourceTree = "<group>"; };
+		843E4CC614A3335800B74789 /* LVImageAndDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LVImageAndDescription.m; sourceTree = "<group>"; };
+		843E4CCC14A334C400B74789 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ImageAndDescription.xib; sourceTree = "<group>"; };
+		845083ED14D5BC0E00C8D79C /* auxiliaryImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = auxiliaryImages; sourceTree = "<group>"; };
+		845083EE14D5BC0E00C8D79C /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +64,8 @@
 		843E4C9114A331DF00B74789 = {
 			isa = PBXGroup;
 			children = (
+				845083ED14D5BC0E00C8D79C /* auxiliaryImages */,
+				845083EE14D5BC0E00C8D79C /* Images */,
 				843E4CA614A331DF00B74789 /* imageLibrary2 */,
 				843E4C9F14A331DF00B74789 /* Frameworks */,
 				843E4C9D14A331DF00B74789 /* Products */,
@@ -88,8 +99,11 @@
 				843E4CB314A331DF00B74789 /* MasterViewController.m */,
 				843E4CB514A331DF00B74789 /* DetailViewController.h */,
 				843E4CB614A331DF00B74789 /* DetailViewController.m */,
+				843E4CC514A3335800B74789 /* LVImageAndDescription.h */,
+				843E4CC614A3335800B74789 /* LVImageAndDescription.m */,
 				843E4CB814A331DF00B74789 /* MasterViewController.xib */,
 				843E4CBB14A331DF00B74789 /* DetailViewController.xib */,
+				843E4CCB14A334C400B74789 /* ImageAndDescription.xib */,
 				843E4CA714A331DF00B74789 /* Supporting Files */,
 			);
 			path = imageLibrary2;
@@ -159,6 +173,9 @@
 				843E4CAB14A331DF00B74789 /* InfoPlist.strings in Resources */,
 				843E4CBA14A331DF00B74789 /* MasterViewController.xib in Resources */,
 				843E4CBD14A331DF00B74789 /* DetailViewController.xib in Resources */,
+				843E4CCD14A334C400B74789 /* ImageAndDescription.xib in Resources */,
+				845083EF14D5BC0E00C8D79C /* auxiliaryImages in Resources */,
+				845083F014D5BC0E00C8D79C /* Images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +190,7 @@
 				843E4CB114A331DF00B74789 /* AppDelegate.m in Sources */,
 				843E4CB414A331DF00B74789 /* MasterViewController.m in Sources */,
 				843E4CB714A331DF00B74789 /* DetailViewController.m in Sources */,
+				843E4CC714A3335800B74789 /* LVImageAndDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +219,14 @@
 				843E4CBC14A331DF00B74789 /* en */,
 			);
 			name = DetailViewController.xib;
+			sourceTree = "<group>";
+		};
+		843E4CCB14A334C400B74789 /* ImageAndDescription.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				843E4CCC14A334C400B74789 /* en */,
+			);
+			name = ImageAndDescription.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -290,6 +316,7 @@
 				843E4CC214A331DF00B74789 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
