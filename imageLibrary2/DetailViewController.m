@@ -28,7 +28,7 @@
     LVImageAndDescription *_currentImage;
     LVImageAndDescription *_rightImage;
     UITextView *_editedTextView;
-    NSInteger _currentImageNumber; // ?!
+    NSInteger _currentImageNumber;
     Boolean _fromMainPage;
     NSMutableArray *_thumbnailArray; //test
     __block NSCache *_imageCache;
@@ -52,7 +52,7 @@
     self.editedTextView = nil;
     self.imageCache = nil;
 
-    [_scrollView release];
+    [_scrollView release], _scrollView = nil;
     
     [super dealloc];
 }
@@ -321,11 +321,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Detail", @"Detail");
+        
+        _fromMainPage = YES;
+        self.imageCache = [[[NSCache alloc] init] autorelease];
     }
     
-    _fromMainPage = YES;
-//    self.imageCache = [[[NSCache alloc] init] autorelease];
-
     return self;
 }
 							

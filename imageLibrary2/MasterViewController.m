@@ -22,52 +22,52 @@ NSInteger const NAVIGATION_BAR_HEIGHT = 44; // ?!
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    // ?!
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    NSString* imageFolderPath = [[NSBundle mainBundle] resourcePath];
-    imageFolderPath = [imageFolderPath stringByAppendingString:@"/Images"];
-    _imageNameArray = [[fileManager contentsOfDirectoryAtPath:imageFolderPath error:nil] retain];
-    
-    _thumbnailArray = [[NSMutableArray alloc] initWithCapacity:_imageNameArray.count];
-    
-    UIImage *noImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"noImage.jpg"
-                                                                                      ofType:nil
-                                                                                 inDirectory:@"auxiliaryImages"]];
-    for (NSInteger i=0; i<_imageNameArray.count; i++) {
-        [_thumbnailArray addObject:noImage];
-        
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[_imageNameArray objectAtIndex:i]
-                                                                                              ofType:nil
-                                                                                         inDirectory:@"Images"]];
-        //        CGSize destinationSize = CGSizeMake(image.size.width/10, image.size.height/10);
-            CGSize destinationSize = CGSizeMake(32, 48);
-            UIGraphicsBeginImageContext(destinationSize);
-
-            [image drawInRect:CGRectMake(0, 0, destinationSize.width, destinationSize.height)];
-            UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-            [_thumbnailArray replaceObjectAtIndex:i withObject: thumbnail];
-            UIGraphicsEndImageContext();
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-//                NSInteger index = i;
-//                NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:index];
-//                [self update:indexPath];
-//                NSIndexPath *indexPath = [[[NSIndexPath alloc] initWithIndex:index] autorelease];
-//                NSArray *array = [NSArray arrayWithObject:indexPath];
-//                [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationRight];
-//                UITableView *tableView = self.tableView;
-//                NSIndexPath *rowPath = [NSIndexPath alloc] 
-//                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:] withRowAnimation:UITableViewRowAnimationRight];
-            });
-        });
-    }
-    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Master", @"Master");
+
+        // ?!
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        NSString* imageFolderPath = [[NSBundle mainBundle] resourcePath];
+        imageFolderPath = [imageFolderPath stringByAppendingString:@"/Images"];
+        _imageNameArray = [[fileManager contentsOfDirectoryAtPath:imageFolderPath error:nil] retain];
+        
+        _thumbnailArray = [[NSMutableArray alloc] initWithCapacity:_imageNameArray.count];
+        
+        UIImage *noImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"noImage.jpg"
+                                                                                          ofType:nil
+                                                                                     inDirectory:@"auxiliaryImages"]];
+        for (NSInteger i=0; i<_imageNameArray.count; i++) {
+            [_thumbnailArray addObject:noImage];
+            
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[_imageNameArray objectAtIndex:i]
+                                                                                                  ofType:nil
+                                                                                             inDirectory:@"Images"]];
+            //        CGSize destinationSize = CGSizeMake(image.size.width/10, image.size.height/10);
+                CGSize destinationSize = CGSizeMake(32, 48);
+                UIGraphicsBeginImageContext(destinationSize);
+
+                [image drawInRect:CGRectMake(0, 0, destinationSize.width, destinationSize.height)];
+                UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+                [_thumbnailArray replaceObjectAtIndex:i withObject: thumbnail];
+                UIGraphicsEndImageContext();
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+    //                NSInteger index = i;
+    //                NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:index];
+    //                [self update:indexPath];
+    //                NSIndexPath *indexPath = [[[NSIndexPath alloc] initWithIndex:index] autorelease];
+    //                NSArray *array = [NSArray arrayWithObject:indexPath];
+    //                [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationRight];
+    //                UITableView *tableView = self.tableView;
+    //                NSIndexPath *rowPath = [NSIndexPath alloc] 
+    //                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:] withRowAnimation:UITableViewRowAnimationRight];
+                });
+            });
+        }
     }
     
     return self;
@@ -202,7 +202,7 @@ NSInteger const NAVIGATION_BAR_HEIGHT = 44; // ?!
         
         [self.detailViewController.view setNeedsDisplay];
         self.detailViewController.imageNames = _imageNameArray;
-        self.detailViewController.thumbnailArray = _thumbnailArray; //test
+        self.detailViewController.thumbnailArray = _thumbnailArray;
         self.detailViewController.scrollView.contentSize = CGSizeMake(self.detailViewController.scrollView.frame.size.width * _imageNameArray.count, self.detailViewController.scrollView.bounds.size.height - NAVIGATION_BAR_HEIGHT);
     }
     
